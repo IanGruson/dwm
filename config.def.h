@@ -60,14 +60,17 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *upvol[]   = { "amixer", "set", "Master", "3+",     NULL };
+static const char *downvol[] = { "amixer", "set", "Master", "3-",     NULL };
+static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,				XK_s,	   spawn,	   SHCMD("transset-df -a --dec .1") },
-	{ MODKEY|ShiftMask,				XK_d,	   spawn,	   SHCMD("transset-df -a --inc .1") },
-	{ MODKEY|ShiftMask,				XK_f,	   spawn,	   SHCMD("transset-df -a .75") },
+	{ MODKEY|ShiftMask,				0x73,	   spawn,	   SHCMD("transset-df -a --dec .1") },
+	{ MODKEY|ShiftMask,				0x64,	   spawn,	   SHCMD("transset-df -a --inc .1") },
+	{ MODKEY|ShiftMask,				0x66,	   spawn,	   SHCMD("transset-df -a .75") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -89,6 +92,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       0xffc9,    spawn,          {.v = upvol   } },
+	{ MODKEY,                       0xffc8,    spawn,          {.v = downvol } },
+	{ MODKEY,                       0xffc7,     spawn,          {.v = mutevol } },
 	TAGKEYS(                        0x26,                      0)
 	TAGKEYS(                        0xe9,                      1)
 	TAGKEYS(                        0x22,                      2)
