@@ -15,10 +15,15 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const char col_green[] 	    = "#336611";
+static const char col_orange[] 	    = "#fb9877";
+static const char col_gruvyellow[]  = "#d79921";
+static const char col_pastel_blue[] = "#bae1ff";
+static const char col_black[] = "#291220";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_black, col_gruvyellow,  col_gruvyellow  },
 };
 
 /* tagging */
@@ -62,7 +67,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", "-f", "monospace:size=13"};
+static const char *termcmd[]  = {"termite"};
 static const char *upvol[]   = { "amixer", "set", "Master", "3+",     NULL };
 static const char *downvol[] = { "amixer", "set", "Master", "3-",     NULL };
 static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
